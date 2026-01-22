@@ -39,40 +39,6 @@ func main() {
 }
 ```
 
-## API Reference
-
-### Core Types
-
-#### `TimeStep`
-The main struct that represents a time sequence configuration.
-
-```go
-type TimeStep struct {
-    start time.Time
-    end   *time.Time  // nil for infinite sequences
-    step  time.Duration
-}
-```
-
-#### Methods
-
-##### `All() iter.Seq[time.Time]`
-Returns an iterator that yields time values according to the configured sequence.
-
-### DSL Methods
-
-#### `From(start time.Time) *startTimeStep`
-Creates a new time sequence starting at the specified time.
-
-#### `(s *startTimeStep) To(end time.Time) *startEndTimeStep`
-Sets the end time for a finite sequence.
-
-#### `(s *startTimeStep) Infinity() *startEndTimeStep`
-Creates an infinite sequence (no end time).
-
-#### `(s *startEndTimeStep) Step(step time.Duration) *TimeStep`
-Sets the step duration between consecutive time values.
-
 ## Usage Examples
 
 ### Basic Finite Sequence
@@ -118,6 +84,7 @@ for t := range tss.All() {
 // 15:47:05
 // 15:52:05
 // 15:57:05
+// ...
 ```
 
 ## Requirements
